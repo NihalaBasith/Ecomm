@@ -10,7 +10,7 @@
        @foreach($data as $product)
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="/productimage/{{$product->image}}" alt=""></a>
+              <a href="#"><img src="/productimage/{{$product->image}}" alt="" width="400" height="300"></a>
               <div class="down-content">
                 <a href="#"><h4>{{$product->title}}</h4></a>
                 <h6>{{$product->price}}</h6>

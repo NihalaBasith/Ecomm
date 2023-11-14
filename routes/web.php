@@ -33,3 +33,8 @@ Route::get('/redirect', [Homecontroller::class,'redirect']);
 Route::get('/', [Homecontroller::class,'index']);
 Route::get('/product', [Admincontroller::class,'product']);
 Route::post('/uploadproduct', [Admincontroller::class,'uploadproduct']);
+Route::get('/showproduct', [Admincontroller::class,'showproduct']);
+Route::get('/deleteproduct/{id}', [Admincontroller::class,'deleteproduct']);
+Route::get('/updateproduct/{id}', [Admincontroller::class,'updateproduct']);
+Route::post('/updateoldproduct/{id}', [Admincontroller::class,'updateoldproduct']);
+
