@@ -37,4 +37,6 @@ Route::get('/showproduct', [Admincontroller::class,'showproduct']);
 Route::get('/deleteproduct/{id}', [Admincontroller::class,'deleteproduct']);
 Route::get('/updateproduct/{id}', [Admincontroller::class,'updateproduct']);
 Route::post('/updateoldproduct/{id}', [Admincontroller::class,'updateoldproduct']);
+Route::get('/search', [Homecontroller::class,'search']);
+Route::post('/addtocart/{id}', [Homecontroller::class,'addtocart']);
 
