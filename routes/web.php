@@ -39,4 +39,9 @@ Route::get('/updateproduct/{id}', [Admincontroller::class,'updateproduct']);
 Route::post('/updateoldproduct/{id}', [Admincontroller::class,'updateoldproduct']);
 Route::get('/search', [Homecontroller::class,'search']);
 Route::post('/addtocart/{id}', [Homecontroller::class,'addtocart']);
+Route::get('/showcart', [Homecontroller::class,'showcart']);
+Route::get('/deleteitem/{id}', [Homecontroller::class,'deletecartitem']);
+Route::post('/order', [Homecontroller::class,'confirmorder']);
+Route::get('/showorders', [Admincontroller::class,'showorders']);
+Route::get('/updatestatus/{id}', [Admincontroller::class,'updatestatus']);
 

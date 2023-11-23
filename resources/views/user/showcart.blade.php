@@ -44,7 +44,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item ">
                 <a class="nav-link" href="index.html">Home
                   <span class="sr-only">(current)</span>
                 </a>
@@ -63,7 +63,7 @@
   
                     @auth
                     <li class="nav-item">
-                <a class="nav-link" href="{{url('showcart')}}"><i class="fas fa-shopping-cart" style="color: #c80913;"></i>Cart[{{$count}}]</a>
+                <a class="nav-link active" href="{{url('showcart')}}"><i class="fas fa-shopping-cart" style="color: #c80913;"></i>Cart[{{$count}}]</a>
               </li>
                         <x-app-layout>
                         </x-app-layout>
@@ -81,109 +81,64 @@
           </div>
         </div>
       </nav>
-      @if (session()->has('message'))
+
+    </header>
+
+    <div style=" padding:100px" align="center">
+
+
+    @if (session()->has('message'))
 <div class="alert alert-success">
     {{ session()->get('message') }}
 
 </div>
+<script>
+        setTimeout(function(){
+            location.reload();
+        }, 3000); 
+    </script>
 @endif
-    </header>
 
- 
-    <div class="banner header-text">
-      <div class="owl-banner owl-carousel">
-        <div class="banner-item-01">
-          <div class="text-content">
-            <h4>Best Offer</h4>
-            <h2>New Arrivals On Sale</h2>
-          </div>
-        </div>
-        <div class="banner-item-02">
-          <div class="text-content">
-            <h4>Flash Deals</h4>
-            <h2>Get your best products</h2>
-          </div>
-        </div>
-        <div class="banner-item-03">
-          <div class="text-content">
-            <h4>Last Minute</h4>
-            <h2>Grab last minute deals</h2>
-          </div>
-        </div>
-      </div>
-    </div>
+<form action="{{url('order')}}" method="POST">
+  @csrf
 
+    <table >
 
-@include('user.product')
+    <tr >
+        <td style="padding:20px;">Product</td>
+        <td style="padding:20px">Quantity</td>
+        <td style="padding:20px">Price</td>
+        <td style="padding:20px;">Action</td>
+        <td style="padding:20px"></td>
 
-    <div class="best-features">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>About Sixteen Clothing</h2>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="left-content">
-              <h4>Looking for the best products?</h4>
-              <p><a rel="nofollow" href="https://templatemo.com/tm-546-sixteen-clothing" target="_parent">This template</a> is free to use for your business websites. However, you have no permission to redistribute the downloadable ZIP file on any template collection website. <a rel="nofollow" href="https://templatemo.com/contact">Contact us</a> for more info.</p>
-              <ul class="featured-list">
-                <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                <li><a href="#">Consectetur an adipisicing elit</a></li>
-                <li><a href="#">It aquecorporis nulla aspernatur</a></li>
-                <li><a href="#">Corporis, omnis doloremque</a></li>
-                <li><a href="#">Non cum id reprehenderit</a></li>
-              </ul>
-              <a href="about.html" class="filled-button">Read More</a>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="right-image">
-              <img src="assets/images/feature-image.jpg" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </tr>
+    @foreach($cart as $carts)
+    <tr   align="center">
+        <td >
+          <input type="text" name="productname[]" value="{{$carts ->product_title}}" hidden="">
+          {{$carts ->product_title}}</td>
+
+        <td > <input type="number" name="quantity[]" value="{{$carts ->quantity}}" hidden="">{{$carts ->quantity}}</td>
+        <td><input type="number" name="price[]" value="{{$carts ->price}}" hidden="">{{$carts ->price}}</td>
+        <td><a class="btn btn-danger" href="{{url('deleteitem',$carts->id)}}">Delete</a></td>
+        <td><a class="btn btn-primary" href="">Update</a></td>
 
 
-    <div class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <div class="row">
-                <div class="col-md-8">
-                  <h4>Creative &amp; Unique <em>Sixteen</em> Products</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla.</p>
-                </div>
-                <div class="col-md-4">
-                  <a href="#" class="filled-button">Purchase Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    </tr>
+   
+    @endforeach
+    
+</table><br>
+<tr align="center"><td class="btn btn-primary">Grand Total = {{$grandTotal}} AED</td></tr><br>
+<div class="confirm-class" style="padding-top:20px">
+
+<button class="btn btn-success">Confirm Order</button></div>
+      </form>
+
+</div>
 
     
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p>Copyright &copy; 2020 Sixteen Clothing Co., Ltd.
-            
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-
  
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
