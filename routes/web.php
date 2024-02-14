@@ -44,4 +44,5 @@ Route::get('/deleteitem/{id}', [Homecontroller::class,'deletecartitem']);
 Route::post('/order', [Homecontroller::class,'confirmorder']);
 Route::get('/showorders', [Admincontroller::class,'showorders']);
 Route::get('/updatestatus/{id}', [Admincontroller::class,'updatestatus']);
+Route::get('/about', [Homecontroller::class,'aboutpage']);
 

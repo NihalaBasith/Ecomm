@@ -34,23 +34,19 @@ class HomeController extends Controller
             return view ('user.home',compact('data'));
 
         }
-      
-
-
     }
-    public function search(Request $request){
-
+    public function search(Request $request)
+    {
         $search = $request->input('search');
-        if($search==''){
-            $data= Product::paginate(3);
-            return view ('user.home',compact('data'));
-
-        } 
-        $data=Product::where('title','like','%'.$search.'%')->get();
-        return view ('user.home',compact('data'));
-
-
-
+        $count = Cart::count(); 
+    
+        if ($search == '') {
+            $data = Product::paginate(3);
+            return view('user.home', compact('data', 'count'));
+        }
+    
+        $data = Product::where('title', 'like', '%' . $search . '%')->get();
+        return view('user.home', compact('data', 'count'));
     }
     public function addtocart(Request $request, $id){
         if(Auth::id()){
@@ -93,12 +89,12 @@ class HomeController extends Controller
 
 
 
-    public function showcart(){
-        $user=auth()->user();
-        $count=Cart::where('phone',$user->phone)->sum('quantity');
-        $cart=Cart::where('phone',$user->phone)->get();
-        $grandTotal = $cart->sum('price');
-        return view ('user.showcart',compact('count','cart','grandTotal'));
+public function showcart(){
+    $user=auth()->user();
+    $count=Cart::where('phone',$user->phone)->sum('quantity');
+    $cart=Cart::where('phone',$user->phone)->get();
+    $grandTotal = $cart->sum('price');
+    return view ('user.showcart',compact('count','cart','grandTotal'));
 
 }
 public function deletecartitem($id){
@@ -130,4 +126,11 @@ public function confirmorder(Request $request){
 
     return redirect()->back()->with('message','Order Placed Successfully !');
 }
+
+public function aboutpage(){
+
+        return view ('user.about');
+
+}
+
 }
