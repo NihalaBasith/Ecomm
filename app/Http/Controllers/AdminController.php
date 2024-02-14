@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Blogs;
 
 class AdminController extends Controller
 {
@@ -105,6 +106,53 @@ class AdminController extends Controller
     
 
   }
+
+ 
+
+  public function  Addblogs()
+  {
+    if (Auth::id()){
+      if(Auth::user()->usertype=="1"){
+        return view ('admin.Addblogs');
   
+      } 
+      else {
+        return redirect()->back();
+      }
+      
   
+    }
+    else{
+      return redirect('login');
+    }
+
+  }
+  
+
+  public function  uploadblog(Request $request)
+  {
+    $data = new blogs;
+
+    $image = $request->file('file');
+     $imagename = time() . '.' . $image->getClientOriginalExtension();
+     $request->file('file')->move('productimage', $imagename);
+     $data->image = $imagename;
+ 
+     $data->title = $request->input('title');
+     $data->author = $request->input('author');
+     $data->description = $request->input('description');
+     $data->save();
+ 
+    return redirect()->back()->with('message','Product added Successfully!');
+
+  }
+  public function  showblogs()
+  {
+    $data= blogs::all();
+    return view ('admin.showblogs',compact('data'));
+    
+
+  }
+  
+ 
 }

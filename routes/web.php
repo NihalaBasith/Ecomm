@@ -45,4 +45,9 @@ Route::post('/order', [Homecontroller::class,'confirmorder']);
 Route::get('/showorders', [Admincontroller::class,'showorders']);
 Route::get('/updatestatus/{id}', [Admincontroller::class,'updatestatus']);
 Route::get('/about', [Homecontroller::class,'aboutpage']);
+Route::get('/home', [Homecontroller::class,'index']);
+Route::get('/blog', [Homecontroller::class,'blogpage']);
+Route::get('/addblogs', [Admincontroller::class,'Addblogs']);
+Route::post('/uploadblog', [Admincontroller::class,'uploadblog']);
+Route::get('/showblogs', [Admincontroller::class,'showblogs']);
 

@@ -10776,7 +10776,7 @@ textarea.is-invalid.tt-hint {
 .navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  margin-right: 1rem;
+  margin-right: -5rem;
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap; }

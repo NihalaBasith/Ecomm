@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Blogs;
 
 class HomeController extends Controller
 {
@@ -130,6 +131,12 @@ public function confirmorder(Request $request){
 public function aboutpage(){
 
         return view ('user.about');
+
+}
+public function blogpage(){
+
+    $data = blogs::orderBy('date', 'desc')->paginate(3);
+    return view ('user.blog',compact('data'));
 
 }
 

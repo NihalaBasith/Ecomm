@@ -1,0 +1,28 @@
+.blog-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .blog {
+    flex: 0 0 30%; /* Adjust the width as needed */
+    text-align: center;
+  }
+  
+  .blog img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: Add rounded corners to images */
+    margin-bottom: 10px;
+  }
+  
+  .blog h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .blog p {
+    font-size: 14px;
+    color: #666;
+  }
+  
